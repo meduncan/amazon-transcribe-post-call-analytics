@@ -467,6 +467,11 @@ Parameters:
     Description: >
       (Optional) If 'CallSummarization' is LAMBDA, provide ARN for a Lambda function.
 
+  Version:
+    Type: String
+    Default: "0.8.0"
+    Description: Solution version - used to trigger UI redeployment on stack updates
+
 Metadata:
     AWS::CloudFormation::Interface:
         ParameterGroups:
@@ -967,6 +972,7 @@ Resources:
           - ''
         PyUtilsLayerArn: !GetAtt PythonUtilsLayer.Outputs.PyUtilsLayer
         LLMTableName: !GetAtt LLMPromptConfigure.Outputs.LLMTableName
+        Version: !Ref Version
 
   PcaDashboards:
     Type: AWS::CloudFormation::Stack

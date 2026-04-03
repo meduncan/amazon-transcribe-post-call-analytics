@@ -1,7 +1,7 @@
 const AWS = require("aws-sdk");
 const cognito = new AWS.CognitoIdentityServiceProvider();
 
-const defaultRole = "reader";
+const defaultRole = "call-readwrite";
 
 exports.handler = async (event) => {
   console.log("Cognito trigger event:", JSON.stringify(event));

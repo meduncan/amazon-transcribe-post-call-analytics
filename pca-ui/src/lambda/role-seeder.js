@@ -119,20 +119,20 @@ async function seedRoles() {
     .promise();
   console.log("[RoleSeeder] 'admin' role written successfully");
 
-  console.log("[RoleSeeder] Writing 'reader' role to", rolesTableName);
+  console.log("[RoleSeeder] Writing 'call-readwrite' role to", rolesTableName);
   await ddb
     .put({
       TableName: rolesTableName,
       Item: {
-        RoleName: "reader",
-        Permissions: ddb.createSet(["read_calls"]),
+        RoleName: "call-readwrite",
+        Permissions: ddb.createSet(["read_calls", "upload_recordings"]),
         CreatedBy: "system",
         CreatedAt: now,
         UpdatedAt: now,
       },
     })
     .promise();
-  console.log("[RoleSeeder] 'reader' role written successfully");
+  console.log("[RoleSeeder] 'call-readwrite' role written successfully");
 }
 
 async function sleep(ms) {

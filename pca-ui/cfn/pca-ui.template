@@ -121,6 +121,10 @@ Parameters:
     Default: PostCallAnalyticsWorkflow
     Description: Name of Step Functions workflow that orchestrates this process
 
+  Version:
+    Type: String
+    Description: Solution version used to trigger UI redeployment on stack updates
+
 Conditions:
   isMainStackNameEmpty: !Equals [!Ref MainStackName, '']
   ShouldEnableGenAIQuery: !Not [!Equals [!Ref GenAIQueryType, 'DISABLED']]
@@ -214,6 +218,7 @@ Resources:
           - ShouldEnableGenAIQuery
           - 'true'
           - 'false'
+        Version: !Ref Version
 
   WebUriParameter:
     Type: "AWS::SSM::Parameter"
